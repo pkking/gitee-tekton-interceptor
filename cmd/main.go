@@ -223,7 +223,6 @@ func (w *GiteeInterceptor) Process(ctx context.Context, r *triggersv1.Intercepto
 			return interceptors.Failf(codes.FailedPrecondition, "error getting secret: %v", err)
 		}
 		secretToken := secret.Data[p.SecretRef.SecretKey]
-		w.Logger.Infof("Using secret %s/%s.%s for validation value: %s", ns, p.SecretRef.SecretName, p.SecretRef.SecretKey, string(secretToken))
 
 		var eventGUID string
 		if eventGUID = headers.Get(giteeTimestampHeader); eventGUID == "" {
